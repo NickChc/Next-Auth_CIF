@@ -1,7 +1,6 @@
 import { auth } from "@/auth";
-import Link from "next/link";
-import { LogOutButton } from "@/app/_components/LogOutButton";
 import { SignInButton } from "@/app/_components/SignInButton";
+import { UserDropdown } from "@/app/_components/UserDropdown";
 
 export async function Header() {
   const session = await auth();
@@ -9,9 +8,12 @@ export async function Header() {
 
   return (
     <header className="w-fill p-3 bg-gray-900 flex items-center justify-center ">
+      <h1 className="text-white whitespace-nowrap text-2xl font-bold">
+        The App
+      </h1>
       <nav className="flex justify-between w-full px-10">
         <div></div>
-        {user ? <LogOutButton /> : <SignInButton />}
+        {user ? <UserDropdown /> : <SignInButton />}
       </nav>
     </header>
   );

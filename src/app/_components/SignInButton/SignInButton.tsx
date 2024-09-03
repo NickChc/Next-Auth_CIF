@@ -10,7 +10,13 @@ export async function SignInButton() {
         await signIn();
       }}
     >
-      <Button type="submit">Sign In</Button>
+      <Button
+        size={"lg"}
+        className="text-md bg-white text-inherit hover:bg-gray-300 font-bold"
+        type="submit"
+      >
+        Sign In
+      </Button>
     </form>
   );
 }
