@@ -15,8 +15,6 @@ interface UserDropdownProps {
 }
 
 export async function UserDropdown({ user }: UserDropdownProps) {
-  console.log(user.role);
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="text-black bg-white rounded-full p-2 text-xl">
