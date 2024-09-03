@@ -9,13 +9,17 @@ export default async function UserList() {
       <h1 className="text-center text-4xl font-bold">Next Auth CIF</h1>
       <h2 className="text-center text-2xl font-semibold">Users</h2>
 
-      <ul className="list-disc list-inside">
+      <ul className="list-disc">
         {users.map((user) => {
           return (
-            <li key={user.id} className="font-semibold text-xl ">
+            <li
+              key={user.id}
+              className="font-semibold text-xl flex flex-col gap-y-3"
+            >
               <Link className="underline" href={`/user/${user.id}`}>
                 {user.name || `User ${user.id}`}
               </Link>
+              <strong>{user?.role || "NO ROLE"}</strong>
             </li>
           );
         })}

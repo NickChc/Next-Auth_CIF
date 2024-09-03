@@ -12,6 +12,10 @@ export default async function Home() {
 
       {user ? (
         <div className="mx-aut flex flex-col items-center">
+          <h2 className="text-3xl font-semibold my-3">
+            ROLE - {user?.role || "none"}
+          </h2>
+
           <h3>{user?.name || "Anonymous"}</h3>
           <div className="relative">
             <Image

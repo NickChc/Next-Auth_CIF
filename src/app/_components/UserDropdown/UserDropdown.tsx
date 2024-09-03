@@ -1,4 +1,4 @@
-import { LogOutIcon, SettingsIcon, UserIcon } from "@/assets/icons";
+import { AdminIcon, LogOutIcon, SettingsIcon, UserIcon } from "@/assets/icons";
 import { signOut } from "@/auth";
 import {
   DropdownMenu,
@@ -7,15 +7,22 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { User } from "next-auth";
 import Link from "next/link";
 
-export function UserDropdown() {
+interface UserDropdownProps {
+  user: User;
+}
+
+export async function UserDropdown({ user }: UserDropdownProps) {
+  console.log(user.role);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="text-black bg-white rounded-full p-2 text-xl">
         <UserIcon className="" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="mr-3 mt-1">
         <DropdownMenuItem>
           <Link
             className="flex items-center gap-x-2 font-semibold "
@@ -44,6 +51,23 @@ export function UserDropdown() {
             </button>
           </form>
         </DropdownMenuItem>
+
+        {user.role === "admin" && (
+          <>
+            <DropdownMenuSeparator />
+
+            <DropdownMenuItem asChild>
+              <Link
+                className="flex items-center gap-x-2 font-semibold cursor-pointer"
+                href={"/admin"}
+              >
+                {/* <Lock /> */}
+                <AdminIcon className="text-lg" />
+                Admin
+              </Link>
+            </DropdownMenuItem>
+          </>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

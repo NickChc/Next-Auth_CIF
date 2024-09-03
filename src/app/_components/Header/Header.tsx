@@ -13,7 +13,7 @@ export async function Header() {
       </h1>
       <nav className="flex justify-between w-full px-10">
         <div></div>
-        {user ? <UserDropdown /> : <SignInButton />}
+        {user ? <UserDropdown user={user} /> : <SignInButton />}
       </nav>
     </header>
   );
