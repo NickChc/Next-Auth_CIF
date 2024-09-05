@@ -1,5 +1,7 @@
+"use client";
+
 import { AdminIcon, LogOutIcon, SettingsIcon, UserIcon } from "@/assets/icons";
-import { signOut } from "@/auth";
+// import { signOut } from "@/auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,13 +10,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { User } from "next-auth";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 
 interface UserDropdownProps {
   user: User;
 }
 
-export async function UserDropdown({ user }: UserDropdownProps) {
+export function UserDropdown({ user }: UserDropdownProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="text-black bg-white rounded-full p-2 text-xl">
@@ -33,7 +36,17 @@ export async function UserDropdown({ user }: UserDropdownProps) {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem>
-          <form
+          <button
+            className="flex items-center gap-x-2 font-semibold"
+            onClick={() => signOut()}
+          >
+            <LogOutIcon className="text-lg font-bold" />
+            Log Out
+          </button>
+
+          {/* SERVER APPROACH BELOW */}
+
+          {/* <form
             action={async () => {
               "use server";
 
@@ -47,7 +60,7 @@ export async function UserDropdown({ user }: UserDropdownProps) {
               <LogOutIcon className="text-lg font-bold" />
               Log Out
             </button>
-          </form>
+          </form> */}
         </DropdownMenuItem>
 
         {user.role === "admin" && (

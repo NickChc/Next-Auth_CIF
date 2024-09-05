@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { User } from "@prisma/client";
 import { publicAxios } from "@/utils/publicAxios";
-import { LayoutDashboard } from "lucide-react";
 
 export default function ClientPage() {
   const [users, setUsers] = useState<User[]>([]);

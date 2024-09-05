@@ -19,7 +19,6 @@ export default async function UserList() {
               <Link className="underline" href={`/user/${user.id}`}>
                 {user.name || `User ${user.id}`}
               </Link>
-              <strong>{user?.role || "NO ROLE"}</strong>
             </li>
           );
         })}
