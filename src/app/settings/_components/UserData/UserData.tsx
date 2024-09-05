@@ -7,7 +7,6 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 import { User } from "next-auth";
 import { useForm } from "react-hook-form";
@@ -18,12 +17,15 @@ import { toast, ToastContainer } from "react-toastify";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import "react-toastify/dist/ReactToastify.css";
+import { useSession } from "next-auth/react";
 
 interface UserDataProps {
   user: User;
 }
 
 export function UserData({ user }: UserDataProps) {
+  const session = useSession();
+
   const form = useForm({
     resolver: zodResolver(updateSchema),
     defaultValues: {
@@ -34,6 +36,7 @@ export function UserData({ user }: UserDataProps) {
   async function onSubmit(data: TUpdateUserValues) {
     try {
       await updateUser(data);
+      session.update();
       toast.success("Profile updated");
     } catch (err: any) {
       toast.error("Failed to update user", {

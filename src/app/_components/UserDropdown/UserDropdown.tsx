@@ -34,6 +34,8 @@ export function UserDropdown({ user }: UserDropdownProps) {
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
+        <p>{user.name}</p>
+        <DropdownMenuSeparator />
 
         <DropdownMenuItem>
           <button
